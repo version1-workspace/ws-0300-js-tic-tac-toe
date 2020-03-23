@@ -4,7 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+<<<<<<< HEAD
     "compile:css": "node-sass stylesheets/sass/index.sass stylesheets/style.css -w"
+=======
+    "compile:css": "node-sass -rw --output-style compressed stylesheets/sass/ -o stylesheets/"
+>>>>>>> 93d97b79d30ae0976f4b43f26e395addb67e62ea
   },
   "repository": {
     "type": "git",

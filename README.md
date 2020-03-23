@@ -44,3 +44,9 @@ open html
 #### 6. 上記ルールに則りながら必要に応じて自分でファイルを追加・編集する
 #### 7. 課題を始める前にこちらのリポジトリをクローンして、課題が終わったらプルリクエストを送ること
 
+<<<<<<< HEAD
+=======
+1. install node in your computer
+2. install yarn in your computer
+# MiniProject-For-Team1
+>>>>>>> 93d97b79d30ae0976f4b43f26e395addb67e62ea
