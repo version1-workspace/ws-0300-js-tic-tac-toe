@@ -10,7 +10,7 @@ let resetButton = document.getElementById("reset-button");
 let cells = document.getElementsByClassName("cell");
 const cellsArray = [].slice.call(cells);
 let result = false;
- 
+
 let ids = [
   "cell1",
   "cell2",
