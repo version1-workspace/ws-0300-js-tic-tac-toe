@@ -1,0 +1,52 @@
+html {
+  font-size: 14px;
+  color: #222;
+  letter-spacing: .08rem;
+  box-sizing: border-box; }
+
+.container {
+  margin: 12% auto;
+  width: 200px;
+  height: 100vh;
+  text-align: center; }
+  .container .ttl {
+    font-family: 'Righteous', cursive;
+    font-size: 26px; }
+  .container main {
+    margin: 16px auto; }
+    .container main .displayTurn {
+      display: flex;
+      margin-bottom: 24px;
+      padding: 16px 0;
+      font-size: 20px; }
+      .container main .displayTurn .turn {
+        padding-bottom: 8px;
+        width: 50%; }
+        .container main .displayTurn .turn.active {
+          border-bottom: 4px solid #41b7d7; }
+    .container main .gameBoard table {
+      background: #222;
+      border: 1px solid #222; }
+      .container main .gameBoard table tr td {
+        width: 61px;
+        height: 61px;
+        background: #fff;
+        cursor: pointer;
+        transition: .3s; }
+        .container main .gameBoard table tr td:hover {
+          background: #f4f4f4; }
+  .container .footer .message {
+    margin-bottom: 16px;
+    font-size: 16px; }
+  .container .footer .btn {
+    display: block;
+    padding: 8px 0;
+    background: #41b7d7;
+    border-radius: 4px;
+    color: #fff;
+    font-family: 'Righteous', cursive;
+    font-size: 16px;
+    transition: .3s; }
+    .container .footer .btn:hover {
+      background: #289dbd;
+      cursor: pointer; }

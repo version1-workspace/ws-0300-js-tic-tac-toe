@@ -1,0 +1,80 @@
+@import "_variable.scss","_config.scss";
+
+.container {
+  margin: 12% auto;
+  width: 200px;
+  height: 100vh;
+  text-align: center;
+
+  .ttl {
+    font-family: 'Righteous', cursive;
+    font-size: 26px;
+  }
+
+  main {
+    margin: 16px auto;
+
+    .displayTurn {
+      display: flex;
+      margin-bottom: 24px;
+      padding: 16px 0;
+      font-size: 20px;
+
+      .turn {
+        padding-bottom: 8px;
+        width: 50%;
+
+        &.active {
+          border-bottom: 4px solid $mainColor;
+        }
+      }
+    }
+    .gameBoard {
+
+      table {
+        background: $black;
+        border: 1px solid $black;
+
+        tr {
+          td {
+            width: 61px;
+            height: 61px;
+            background: #fff;
+            cursor: pointer;
+            transition: .3s;
+
+            &:hover {
+              background: #f4f4f4;
+            }
+          }
+        }
+      }
+
+    }
+  }
+
+  .footer {
+
+    .message {
+      margin-bottom: 16px;
+      font-size: 16px;
+    }
+
+    .btn {
+      display: block;
+      padding: 8px 0;
+      background: $mainColor;
+      border-radius: 4px;
+      color: #fff;
+      font-family: 'Righteous', cursive;
+      font-size: 16px;
+      transition: .3s;
+
+      &:hover {
+        background: darken($mainColor, 10%);
+        cursor: pointer;
+      }
+    }
+  }
+}
+
