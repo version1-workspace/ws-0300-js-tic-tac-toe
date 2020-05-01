@@ -8,7 +8,7 @@ const context = {
   circleElement: document.querySelector(".turn-item.circle"),
   crossElement: document.querySelector(".turn-item.cross"),
   stateMessageElement: document.querySelector(".js-state-message"),
-  restartButtonElement: document.querySelector(".js-restart"),
+  restartButtonElement: document.querySelector(".js-button"),
 };
 
 const STATUSES = {

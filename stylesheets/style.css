@@ -42,6 +42,9 @@ body {
   text-align: center;
   font-size: 2rem; }
 
+.js-unclickable {
+  pointer-events: none; }
+
 .state-message {
   font-size: 0.9rem;
   text-align: center;
