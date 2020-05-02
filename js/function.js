@@ -1,12 +1,12 @@
-// 状態
+// 状態 //
 const context = {
   handCount: 0,
   isCircleTurn: true,
   progress: true,
   cells: new Array(9),
   cellElements: document.querySelectorAll(".js-cell"),
-  circleElement: document.querySelector(".turn-item.circle"),
-  crossElement: document.querySelector(".turn-item.cross"),
+  circleElement: document.querySelector(".js-circle"),
+  crossElement: document.querySelector(".js-cross"),
   stateMessageElement: document.querySelector(".js-state-message"),
   restartButtonElement: document.querySelector(".js-button"),
 };
@@ -23,7 +23,64 @@ const CHARACTERS = {
   cross: "×",
 };
 
-// 関数
+// 振る舞い //
+
+//リスタート
+context.restartButtonElement.addEventListener("click", () => {
+  location.reload();
+});
+
+//セルクリック
+context.cellElements.forEach((cell) => {
+  cell.addEventListener("click", (e) => {
+    const { cells, progress, isCircleTurn, stateMessageElement } = context;
+    const index = Number(e.target.getAttribute("id")) - 1;
+    if (cells[index] || !progress) {
+      return;
+    }
+
+    const value = isCircleTurn ? CHARACTERS.circle : CHARACTERS.cross;
+    e.target.innerHTML = value;
+    cells[index] = value;
+
+    if (checkWinner(context, value)) {
+      context.progress = false;
+      const message = isCircleTurn
+        ? STATUSES.win.replace("%name%", CHARACTERS.circle)
+        : STATUSES.win.replace("%name%", CHARACTERS.cross);
+      stateMessageElement.innerHTML = message;
+    } else {
+      toggleTurn(context);
+      context.isCircleTurn = !context.isCircleTurn;
+    }
+
+    context.handCount++;
+    if (context.handCount == 9) {
+      context.progress = false;
+      stateMessageElement.innerHTML = STATUSES.draw;
+    }
+  });
+});
+
+//勝利判定
+function checkWinner({ cells }, value) {
+  if (
+    [0, 1, 2].every((item) => cells[item] === value) ||
+    [3, 4, 5].every((item) => cells[item] === value) ||
+    [6, 7, 8].every((item) => cells[item] === value) ||
+    [0, 3, 6].every((item) => cells[item] === value) ||
+    [1, 4, 7].every((item) => cells[item] === value) ||
+    [2, 5, 8].every((item) => cells[item] === value) ||
+    [0, 4, 8].every((item) => cells[item] === value) ||
+    [2, 4, 6].every((item) => cells[item] === value)
+  ) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
+//トグルターン
 function toggleTurn({ isCircleTurn, circleElement, crossElement }) {
   if (isCircleTurn) {
     circleElement.classList.remove(ACTIVE_CLASSNAME);
@@ -33,81 +90,3 @@ function toggleTurn({ isCircleTurn, circleElement, crossElement }) {
     crossElement.classList.remove(ACTIVE_CLASSNAME);
   }
 }
-
-function checkRow({ cells }, value, index) {
-  let cursor = index;
-  let baseIndex = index - (index % 3);
-  for (let i = baseIndex; i < baseIndex + 3; i++) {
-    if (cells[i] !== value) {
-      return false;
-    }
-  }
-  return true;
-}
-
-function checkCol({ cells }, value, index) {
-  let cursor = index;
-  for (let i = 0; i < 3; i++) {
-    if (cells[cursor] !== value) {
-      return false;
-    }
-    cursor = (cursor + 3) % 9;
-  }
-  return true;
-}
-
-function checkDiagonal({ cells }, value, index) {
-  if (![0, 2, 4, 6, 8].includes(index)) {
-    return false;
-  }
-  return (
-    [0, 4, 8].every((item) => cells[item] === value) ||
-    [2, 4, 6].every((item) => cells[item] === value)
-  );
-}
-
-function checkWinner(context, value, index) {
-  return [checkRow, checkCol, checkDiagonal].some((cb) =>
-    cb(context, value, index)
-  );
-}
-
-function onClickCell(e) {
-  const { cells, progress, isCircleTurn, stateMessageElement } = context;
-  const index = Number(e.target.getAttribute("data-key")) - 1;
-  if (cells[index] || !progress) {
-    return;
-  }
-
-  const value = isCircleTurn ? CHARACTERS.circle : CHARACTERS.cross;
-  e.target.innerHTML = value;
-  cells[index] = value;
-
-  if (checkWinner(context, value, index)) {
-    context.progress = false;
-    const message = isCircleTurn
-      ? STATUSES.win.replace("%name%", CHARACTERS.circle)
-      : STATUSES.win.replace("%name%", CHARACTERS.cross);
-    stateMessageElement.innerHTML = message;
-  } else {
-    toggleTurn(context);
-    context.isCircleTurn = !context.isCircleTurn;
-  }
-
-  context.handCount++;
-  if (context.handCount === 9) {
-    context.progress = false;
-    stateMessageElement.innerHTML = STATUSES.draw;
-  }
-}
-
-function subscribe() {
-  context.cellElements.forEach((item) => {
-    item.addEventListener("click", onClickCell);
-  });
-  context.restartButtonElement.addEventListener("click", () =>
-    location.reload()
-  );
-}
-
-subscribe();
