@@ -14,26 +14,26 @@ html {
     font-size: 26px; }
   .container main {
     margin: 16px auto; }
-    .container main .displayTurn {
+    .container main .players {
       display: flex;
       margin-bottom: 24px;
       padding: 16px 0;
       font-size: 20px; }
-      .container main .displayTurn .turn {
+      .container main .players .player {
         padding-bottom: 8px;
         width: 50%; }
-        .container main .displayTurn .turn.active {
+        .container main .players .player.active {
           border-bottom: 4px solid #41b7d7; }
-    .container main .gameBoard table {
+    .container main #gameBoard table {
       background: #222;
       border: 1px solid #222; }
-      .container main .gameBoard table tr td {
+      .container main #gameBoard table tr td {
         width: 61px;
         height: 61px;
         background: #fff;
         cursor: pointer;
         transition: .3s; }
-        .container main .gameBoard table tr td:hover {
+        .container main #gameBoard table tr td:hover {
           background: #f4f4f4; }
   .container .footer .message {
     margin-bottom: 16px;

@@ -14,13 +14,13 @@
   main {
     margin: 16px auto;
 
-    .displayTurn {
+    .players {
       display: flex;
       margin-bottom: 24px;
       padding: 16px 0;
       font-size: 20px;
 
-      .turn {
+      .player {
         padding-bottom: 8px;
         width: 50%;
 
@@ -29,7 +29,7 @@
         }
       }
     }
-    .gameBoard {
+    #gameBoard {
 
       table {
         background: $black;
