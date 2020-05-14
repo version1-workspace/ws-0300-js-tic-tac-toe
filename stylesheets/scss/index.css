@@ -12,6 +12,22 @@ main {
   text-align: center;
 }
 
+.turn ul {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  list-style-type: none;
+}
+
+.turn li {
+  width: 5rem;
+  font-size: 2rem;
+}
+
+.turn li.is-active {
+  background: #eee;
+}
+
 table,
 td {
   border: 1px solid #000;
@@ -65,5 +81,9 @@ td.cross:after {
   width: 2.5rem;
   height: 2px;
   background: grey;
+}
+
+td.is-clicked {
+  pointer-events: none;
 }
 /*# sourceMappingURL=index.css.map */
