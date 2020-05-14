@@ -18,11 +18,16 @@ const line1 = [squares[0],squares[1],squares[2]],
 
 function judgeWinner() {
 
-  line1.every(function(square) {
-    if(square.classList.contains('circle')) {
-      console.log(true);
-    };
+  const judgeAllLines = lines.some(function(line) {
+
+    const judgeLine = line.every(function(square) {
+      return square.classList.contains('circle');
+    });
+    judgeLine ? console.log(true) : console.log(false);
+
   });
+  return judgeAllLines;
+  
 }
 
 squares.forEach(square => {
