@@ -13,8 +13,17 @@ const line1 = [squares[0],squares[1],squares[2]],
       line5 = [squares[1],squares[4],squares[7]],
       line6 = [squares[2],squares[5],squares[8]],
       line7 = [squares[0],squares[4],squares[8]],
-      line8 = [squares[2],squares[4],squares[6]];
-      
+      line8 = [squares[2],squares[4],squares[6]],
+      lines = [line1, line2, line3, line4, line5, line6, line7, line8];
+
+function judgeWinner() {
+
+  line1.every(function(square) {
+    if(square.classList.contains('circle')) {
+      console.log(true);
+    };
+  });
+}
 
 squares.forEach(square => {
   square.addEventListener('click', e => {
@@ -26,6 +35,8 @@ squares.forEach(square => {
       square.classList.add('cross');
       square.classList.add('is-clicked');
     }
+
+    judgeWinner();
 
     turnFirst = !turnFirst;
 
