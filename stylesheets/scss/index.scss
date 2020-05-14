@@ -1,0 +1,63 @@
+
+@import 'variable';
+
+.container {
+  display: flex;
+  justify-content: center;
+}
+
+main {
+  display: block;
+  text-align: center;
+}
+
+table,
+td {
+  border: 1px solid #000;
+}
+
+table {
+  box-sizing: border-box;
+  border-collapse: collapse;
+  border-spacing: 2px
+}
+
+td {
+  width: 5rem;
+  height: 5rem;
+  position: relative;
+
+  &.circle::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 2.5rem;
+    height: 2.5rem;
+    border: solid 2px grey;
+    border-radius: 50%;
+  }
+
+  &.cross:before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(45deg);
+    width: 2.5rem;
+    height: 2px;
+    background: grey;
+  }
+
+  &.cross:after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(-45deg);
+    width: 2.5rem;
+    height: 2px;
+    background: grey;
+  }
+}
