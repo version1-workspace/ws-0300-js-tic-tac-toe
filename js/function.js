@@ -38,6 +38,7 @@ function judgeWinner() {
       return square.classList.contains('circle');
     });
     judgeLine ? endGame = true : endGame = false;
+    return judgeLine;
   });
   return judgeAllLines;
 }
