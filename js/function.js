@@ -8,7 +8,8 @@ const fisrt = document.querySelector('.turn-first'),
       second = document.querySelector('.turn-second'),
       squares = [...document.querySelectorAll('.square')],
       resetBtn = document.querySelector('.btn-reset'),
-      statusEndGame = document.querySelector('.status-endgame');
+      statusEndGame = document.querySelector('.status-endgame'),
+      statusWinner = document.querySelector('.status-winner');
 
 const line1 = [squares[0],squares[1],squares[2]],
       line2 = [squares[3],squares[4],squares[5]],
@@ -60,7 +61,7 @@ function judgeEndGame() {
     squares.forEach(square => {
       square.classList.add('is-clicked');
     });
-    statusEndGame.textContent = 'ゲーム終了です';
+    statusWinner.textContent = `${turnFirst ? "○" : "×"}`;
   }
 }
 
