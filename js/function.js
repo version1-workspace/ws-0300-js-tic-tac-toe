@@ -3,8 +3,8 @@
 let turnFirst = true;
 let endGame = false;
 
-const fisrt = document.querySelector('.first'),
-      second = document.querySelector('.second'),
+const fisrt = document.querySelector('.turn-first'),
+      second = document.querySelector('.turn-second'),
       squares = [...document.querySelectorAll('.square')],
       resetBtn = document.querySelector('.btn-reset'),
       statusEndGame = document.querySelector('.status-endgame');
@@ -19,6 +19,15 @@ const line1 = [squares[0],squares[1],squares[2]],
       line8 = [squares[2],squares[4],squares[6]],
       lines = [line1, line2, line3, line4, line5, line6, line7, line8];
 
+function toggleTurnIndicator() {
+  if (turnFirst === true) {
+    fisrt.classList.add('is-active');
+    second.classList.remove('is-active');
+  } else if (turnFirst === false) {
+    fisrt.classList.remove('is-active');
+    second.classList.add('is-active');
+  }
+}
 
 // 1行・1列でも全て○がつけばtrueを返す
 function judgeWinner() {
@@ -30,6 +39,7 @@ function judgeWinner() {
   });
   return judgeAllLines;
 }
+
 
 // 勝ちが出たらすべてのマスをクリック不可にする
 function judgeEndGame() {
@@ -54,6 +64,7 @@ squares.forEach(square => {
     judgeWinner();
     judgeEndGame();
     turnFirst = !turnFirst;
+    toggleTurnIndicator();
   });
 });
 
