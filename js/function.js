@@ -1,3 +1,4 @@
+"use strict";
 
 // 状態管理
 let turnFirst = true;
@@ -19,6 +20,7 @@ const line1 = [squares[0],squares[1],squares[2]],
       line8 = [squares[2],squares[4],squares[6]],
       lines = [line1, line2, line3, line4, line5, line6, line7, line8];
 
+
 function toggleTurnIndicator() {
   if (turnFirst === true) {
     fisrt.classList.add('is-active');
@@ -39,7 +41,6 @@ function judgeWinner() {
   });
   return judgeAllLines;
 }
-
 
 // 勝ちが出たらすべてのマスをクリック不可にする
 function judgeEndGame() {
@@ -68,8 +69,7 @@ squares.forEach(square => {
   });
 });
 
-
 //  リセット
 resetBtn.addEventListener('click', e => {
   window.location.reload();
-})
+});
