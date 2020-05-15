@@ -3,6 +3,7 @@
 // 状態管理
 let turnFirst = true;
 let endGame = false;
+let isDraw = false;
 
 const fisrt = document.querySelector('.turn-first'),
       second = document.querySelector('.turn-second'),
@@ -21,7 +22,7 @@ const line1 = [squares[0],squares[1],squares[2]],
       line8 = [squares[2],squares[4],squares[6]],
       lines = [line1, line2, line3, line4, line5, line6, line7, line8];
 
-
+      
 function toggleTurnIndicator() {
   if (turnFirst === true) {
     fisrt.classList.add('is-active');
@@ -55,7 +56,7 @@ function judgeWinner(player) {
   }
 }
 
-// 勝ちが出たらすべてのマスをクリック不可にする
+// 勝ちが出たら勝者を表示し、すべてのマスをクリック不可にする
 function judgeEndGame() {
   if (endGame === true) {
     squares.forEach(square => {
@@ -63,6 +64,19 @@ function judgeEndGame() {
     });
     statusWinner.textContent = `${turnFirst ? "○" : "×"}`;
   }
+
+  // 引き分けを判定する
+  const judgeAllLines = lines.every(function(line) {
+    const judgeLine = line.every(function(square) {
+      return square.classList.contains('circle') || square.classList.contains('cross');
+    });
+    judgeLine ? isDraw = true : isDraw = false;
+    return judgeLine;
+  });
+  if (isDraw === true) {
+    statusWinner.textContent = 'Draw';
+  }
+  return judgeAllLines;
 }
 
 // クリックの度に○または×をマスに追加し、勝敗を判定
