@@ -32,15 +32,26 @@ function toggleTurnIndicator() {
 }
 
 // 1行・1列でも全て○がつけばtrueを返す
-function judgeWinner() {
-  const judgeAllLines = lines.some(function(line) {
-    const judgeLine = line.every(function(square) {
-      return square.classList.contains('circle');
+function judgeWinner(player) {
+  if (player === true) {
+    const judgeAllLines = lines.some(function(line) {
+      const judgeLine = line.every(function(square) {
+        return square.classList.contains('circle');
+      });
+      judgeLine ? endGame = true : endGame = false;
+      return judgeLine;
     });
-    judgeLine ? endGame = true : endGame = false;
-    return judgeLine;
-  });
-  return judgeAllLines;
+    return judgeAllLines;
+  } else if (player === false) {
+    const judgeAllLines = lines.some(function(line) {
+      const judgeLine = line.every(function(square) {
+        return square.classList.contains('cross');
+      });
+      judgeLine ? endGame = true : endGame = false;
+      return judgeLine;
+    });
+    return judgeAllLines;
+  }
 }
 
 // 勝ちが出たらすべてのマスをクリック不可にする
@@ -56,14 +67,14 @@ function judgeEndGame() {
 // クリックの度に○または×をマスに追加し、勝敗を判定
 squares.forEach(square => {
   square.addEventListener('click', e => {
-    if (turnFirst == true) {
+    if (turnFirst === true) {
       square.classList.add('circle');
       square.classList.add('is-clicked');
     } else if (turnFirst == false) {
       square.classList.add('cross');
       square.classList.add('is-clicked');
     }
-    judgeWinner();
+    judgeWinner(turnFirst);
     judgeEndGame();
     turnFirst = !turnFirst;
     toggleTurnIndicator();
