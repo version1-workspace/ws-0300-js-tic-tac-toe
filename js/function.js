@@ -12,53 +12,39 @@ const fisrt = document.querySelector('.turn-first'),
       statusEndGame = document.querySelector('.status-endgame'),
       statusWinner = document.querySelector('.status-winner');
 
-const line1 = [squares[0],squares[1],squares[2]],
-      line2 = [squares[3],squares[4],squares[5]],
-      line3 = [squares[6],squares[7],squares[8]],
-      line4 = [squares[0],squares[3],squares[6]],
-      line5 = [squares[1],squares[4],squares[7]],
-      line6 = [squares[2],squares[5],squares[8]],
-      line7 = [squares[0],squares[4],squares[8]],
-      line8 = [squares[2],squares[4],squares[6]],
-      lines = [line1, line2, line3, line4, line5, line6, line7, line8];
+const lines = [
+  [squares[0],squares[1],squares[2]],
+  [squares[3],squares[4],squares[5]],
+  [squares[6],squares[7],squares[8]],
+  [squares[0],squares[3],squares[6]],
+  [squares[1],squares[4],squares[7]],
+  [squares[2],squares[5],squares[8]],
+  [squares[0],squares[4],squares[8]],
+  [squares[2],squares[4],squares[6]]
+];
 
-      
 function toggleTurnIndicator() {
-  if (turnFirst === true) {
+  if (turnFirst) {
     fisrt.classList.add('is-active');
     second.classList.remove('is-active');
-  } else if (turnFirst === false) {
+  } else {
     fisrt.classList.remove('is-active');
     second.classList.add('is-active');
   }
 }
 
 // 1行・1列でも全て○がつけばtrueを返す
-function judgeWinner(player) {
-  if (player === true) {
-    const judgeAllLines = lines.some(function(line) {
-      const judgeLine = line.every(function(square) {
-        return square.classList.contains('circle');
+function judgeWinner(className) {
+  return lines.some(function(line) {
+      return line.every(function(square) {
+        return square.classList.contains(className);
       });
-      judgeLine ? endGame = true : endGame = false;
-      return judgeLine;
     });
-    return judgeAllLines;
-  } else if (player === false) {
-    const judgeAllLines = lines.some(function(line) {
-      const judgeLine = line.every(function(square) {
-        return square.classList.contains('cross');
-      });
-      judgeLine ? endGame = true : endGame = false;
-      return judgeLine;
-    });
-    return judgeAllLines;
-  }
 }
 
 // 勝ちが出たら勝者を表示し、すべてのマスをクリック不可にする
 function judgeEndGame() {
-  if (endGame === true) {
+  if (endGame) {
     squares.forEach(square => {
       square.classList.add('is-clicked');
     });
@@ -73,7 +59,7 @@ function judgeEndGame() {
     judgeLine ? isDraw = true : isDraw = false;
     return judgeLine;
   });
-  if (isDraw === true) {
+  if (isDraw) {
     statusWinner.textContent = 'Draw';
   }
   return judgeAllLines;
@@ -82,13 +68,9 @@ function judgeEndGame() {
 // クリックの度に○または×をマスに追加し、勝敗を判定
 squares.forEach(square => {
   square.addEventListener('click', e => {
-    if (turnFirst === true) {
-      square.classList.add('circle');
-      square.classList.add('is-clicked');
-    } else if (turnFirst == false) {
-      square.classList.add('cross');
-      square.classList.add('is-clicked');
-    }
+    const hand = turnFirst ? 'circle' : 'cross'
+    square.classList.add(hand);
+    square.classList.add('is-clicked');
     judgeWinner(turnFirst);
     judgeEndGame();
     turnFirst = !turnFirst;
