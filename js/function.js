@@ -36,28 +36,16 @@ function toggleTurnIndicator() {
 }
 
 // 1行・1列でも全て○がつけばtrueを返す
-function judgeWinner(player) {
-  if (player) {
-    const judgeAllLines = lines.some(function(line) {
-      const judgeLine = line.every(function(square) {
-        return square.classList.contains('circle');
-      });
-      judgeLine ? endGame = true : endGame = false;
-      endGame ? stopGame() : console.log();
-      return judgeLine;
+function judgeWinner(className) {
+  const judgeAllLines = lines.some(function(line) {
+    const judgeLine = line.every(function(square) {
+      return square.classList.contains(className);
     });
-    return judgeAllLines;
-  } else {
-    const judgeAllLines = lines.some(function(line) {
-      const judgeLine = line.every(function(square) {
-        return square.classList.contains('cross');
-      });
-      judgeLine ? endGame = true : endGame = false;
-      endGame ? stopGame() : console.log();
-      return judgeLine;
-    });
-    return judgeAllLines;
-  }
+    judgeLine ? endGame = true : endGame = false;
+    endGame ? stopGame() : "";
+    return judgeLine;
+  });
+  return judgeAllLines;
 }
 
 // 勝ちが出たら勝者を表示し、すべてのマスをクリック不可にする
@@ -68,24 +56,22 @@ function stopGame() {
   statusWinner.textContent = `${turnFirst ? "○" : "×"}`;
 }
 
-// 9手目で引き分けを判定する
+// 引き分けを判定する（9手目時のみ実行）
 function judgeDraw() {
-  if (times === 9) {
-    lines.every(function(line) {
-      const judgeLine = line.every(function(square) {
-        return square.classList.contains('circle') || square.classList.contains('cross');
-      });
-      judgeLine ? isDraw = true : isDraw = false;
-      return judgeLine;
+  lines.every(function(line) {
+    const judgeLine = line.every(function(square) {
+      return square.classList.contains('circle') || square.classList.contains('cross');
     });
-    if (isDraw) {
-      statusWinner.textContent = 'Draw';
-    }
-    return judgeDraw;
+    judgeLine ? isDraw = true : isDraw = false;
+    return judgeLine;
+  });
+  if (isDraw) {
+    statusWinner.textContent = 'Draw';
   }
+  return judgeDraw;
 }
 
-// クリックの度に○または×をマスに追加し、勝敗を判定
+// クリックの度に○または×をマスに追加する
 squares.forEach(square => {
   square.addEventListener('click', e => {
     const hand = turnFirst ? 'circle' : 'cross'
@@ -93,8 +79,8 @@ squares.forEach(square => {
     square.classList.add('is-clicked');
     times = times + 1;
     console.log(times);
-    judgeDraw();
-    judgeWinner(turnFirst);
+    times === 9 ? judgeDraw() : "";
+    judgeWinner(hand);
     turnFirst = !turnFirst;
     toggleTurnIndicator();
   });
