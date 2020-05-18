@@ -27,18 +27,18 @@ main {
   }
 }
 
-table,
-td {
+.grid,
+.square {
   border: 1px solid #000;
 }
 
-table {
+.grid {
   box-sizing: border-box;
   border-collapse: collapse;
   border-spacing: 2px
 }
 
-td {
+.square {
   width: 5rem;
   height: 5rem;
   position: relative;
