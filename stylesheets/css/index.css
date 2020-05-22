@@ -1,7 +1,14 @@
+@charset "UTF-8";
 html {
   font-size: 14px;
   color: #222;
   letter-spacing: .08rem;
+  box-sizing: border-box; }
+
+body {
+  margin: 0; }
+
+*, *::after, *::before {
   box-sizing: border-box; }
 
 .container {
@@ -24,20 +31,45 @@ html {
         width: 50%; }
         .container main .players .player.active {
           border-bottom: 4px solid #41b7d7; }
-    .container main #gameBoard table {
+    .container main #board table {
       background: #222;
       border: 1px solid #222; }
-      .container main #gameBoard table tr td {
+      .container main #board table tr td {
+        position: relative;
         width: 61px;
         height: 61px;
         background: #fff;
         cursor: pointer;
-        transition: .3s; }
-        .container main #gameBoard table tr td:hover {
-          background: #f4f4f4; }
+        transition: .5s; }
+        .container main #board table tr td:hover {
+          background: #95d7e9; }
+        .container main #board table tr td.cell {
+          font-family: "Font Awesome 5 Free"; }
+          .container main #board table tr td.cell.circle:before {
+            position: absolute;
+            bottom: 18px;
+            right: 18px;
+            content: '\f111';
+            font-size: 22px; }
+          .container main #board table tr td.cell.cross:before {
+            position: absolute;
+            bottom: 7px;
+            right: 17px;
+            content: '×';
+            font-size: 36px; }
   .container .footer .message {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     margin-bottom: 16px;
-    font-size: 16px; }
+    font-weight: bold;
+    font-size: 16px;
+    color: #6c6c6c; }
+    .container .footer .message i {
+      margin-right: 4px;
+      font-size: 22px; }
+    .container .footer .message.result {
+      color: sienna; }
   .container .footer .btn {
     display: block;
     padding: 8px 0;
@@ -46,7 +78,7 @@ html {
     color: #fff;
     font-family: 'Righteous', cursive;
     font-size: 16px;
-    transition: .3s; }
+    transition: .5s; }
     .container .footer .btn:hover {
       background: #289dbd;
       cursor: pointer; }

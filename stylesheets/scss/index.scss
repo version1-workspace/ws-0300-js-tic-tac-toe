@@ -29,7 +29,7 @@
         }
       }
     }
-    #gameBoard {
+    #board {
 
       table {
         background: $black;
@@ -37,27 +37,61 @@
 
         tr {
           td {
+            position: relative;
             width: 61px;
             height: 61px;
             background: #fff;
             cursor: pointer;
-            transition: .3s;
+            transition: .5s;
 
             &:hover {
-              background: #f4f4f4;
+              background: lighten($mainColor, 20%);
+            }
+
+            &.cell {
+              font-family: "Font Awesome 5 Free";
+  
+              &.circle:before {
+                position: absolute;
+                bottom: 18px;
+                right: 18px;
+                content: '\f111';
+                font-size: 22px;
+              }
+  
+              &.cross:before {
+                position: absolute;
+                bottom: 7px;
+                right: 17px;
+                content: '×';
+                font-size: 36px;
+              }
             }
           }
         }
       }
-
     }
   }
 
   .footer {
 
     .message {
+      display: flex;
+      align-items: center;
+      justify-content: center;
       margin-bottom: 16px;
+      font-weight: bold;
       font-size: 16px;
+      color: #6c6c6c;
+
+      i {
+        margin-right: 4px;
+        font-size: 22px;
+      }
+
+      &.result {
+        color: sienna;
+      }
     }
 
     .btn {
@@ -68,7 +102,7 @@
       color: #fff;
       font-family: 'Righteous', cursive;
       font-size: 16px;
-      transition: .3s;
+      transition: .5s;
 
       &:hover {
         background: darken($mainColor, 10%);

@@ -5,6 +5,7 @@
   <title>Tic Tac Toe</title>
   <link href="https://fonts.googleapis.com/css2?family=Righteous&family=Roboto&display=swap" rel="stylesheet">
   <link href="stylesheets/css/index.css" rel="stylesheet" type="text/css" media="all" />
+  <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
 </head>
 <body>
   <div class="container">
@@ -13,36 +14,36 @@
       </header>
       <main>
         <div class="players">
-          <div class="player maru active">○</div>
-          <div class="player batsu">×</div>
+          <div class="player circle active"><i class="far fa-circle"></i></div>
+          <div class="player cross"><i class="fas fa-times"></i></div>
         </div>
-        <div id="gameBoard">
+        <div id="board">
           <table class="js-table">
             <tbody>
-              <tr class="row">
-                <td class="js-box"></td>
-                <td class="js-box"></td>
-                <td class="js-box"></td>
+              <tr>
+                <td class="cell" data-key="0"></td>
+                <td class="cell" data-key="1"></td>
+                <td class="cell" data-key="2"></td>
               </tr>
-              <tr class="row">
-                <td class="js-box"></td>
-                <td class="js-box"></td>
-                <td class="js-box"></td>
+              <tr>
+                <td class="cell" data-key="3"></td>
+                <td class="cell" data-key="4"></td>
+                <td class="cell" data-key="5"></td>
               </tr>
-              <tr class="row">
-                <td class="js-box"></td>
-                <td class="js-box"></td>
-                <td class="js-box"></td>
+              <tr>
+                <td class="cell" data-key="6"></td>
+                <td class="cell" data-key="7"></td>
+                <td class="cell" data-key="8"></td>
               </tr>
             </tbody>
           </table>
         </div>
       </main>
 
-        <div class="footer">
-          <div class="message js-message">starting...</div>
-          <a class="btn" id="js-restart">RESTART</a>
-        </div>
+      <div class="footer">
+        <div class="message" id="js-message">starting...</div>
+        <a class="btn" id="js-restart">RESTART</a>
+      </div>
     </div>
   <script type="text/javascript" src="js/function.js"></script>
 </body>

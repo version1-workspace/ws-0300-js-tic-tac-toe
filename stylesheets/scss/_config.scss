@@ -6,3 +6,11 @@ html {
   letter-spacing: .08rem;
   box-sizing: border-box;
 }
+
+body  {
+  margin: 0;
+}
+
+*, *::after, *::before {
+  box-sizing: border-box;
+}
