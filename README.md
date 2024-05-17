@@ -42,8 +42,7 @@
 
 #### 関数型プログラミングについて
 
-- [関数型プログラミングはまず考え方から理解しよう - Qiita](https://qiita.com/stkdev/items/5c021d4e5d54d56b927c)
-- [関数型プログラミング入門 | POSTD](https://postd.cc/an-introduction-to-functional-programming/)
+- [「関数型プログラミングとは？」& 重要ワードの用語解説](https://ver-1-0.net/lab/posts/functional-programming/)
 
 #### yarnについて
 
